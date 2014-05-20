@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawTextTestMonoGameGL", "DrawTextTest\DrawTextTestMonoGameGL.csproj", "{B9C0354E-3CE4-4742-A541-76AAADD2E642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.Framework.WindowsGL", "..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsGL.csproj", "{6D75E618-19CA-4C51-9546-F10965FBC0B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release-GL|Any CPU = Release-GL|Any CPU
+		Release-GL|Mixed Platforms = Release-GL|Mixed Platforms
+		Release-GL|x86 = Release-GL|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9C0354E-3CE4-4742-A541-76AAADD2E642}.Release-GL|Any CPU.ActiveCfg = Release-GL|x86
+		{B9C0354E-3CE4-4742-A541-76AAADD2E642}.Release-GL|Mixed Platforms.ActiveCfg = Release-GL|x86
+		{B9C0354E-3CE4-4742-A541-76AAADD2E642}.Release-GL|Mixed Platforms.Build.0 = Release-GL|x86
+		{B9C0354E-3CE4-4742-A541-76AAADD2E642}.Release-GL|x86.ActiveCfg = Release-GL|x86
+		{B9C0354E-3CE4-4742-A541-76AAADD2E642}.Release-GL|x86.Build.0 = Release-GL|x86
+		{6D75E618-19CA-4C51-9546-F10965FBC0B8}.Release-GL|Any CPU.ActiveCfg = Release-GL|Any CPU
+		{6D75E618-19CA-4C51-9546-F10965FBC0B8}.Release-GL|Any CPU.Build.0 = Release-GL|Any CPU
+		{6D75E618-19CA-4C51-9546-F10965FBC0B8}.Release-GL|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6D75E618-19CA-4C51-9546-F10965FBC0B8}.Release-GL|Mixed Platforms.Build.0 = Release|Any CPU
+		{6D75E618-19CA-4C51-9546-F10965FBC0B8}.Release-GL|x86.ActiveCfg = Release-GL|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
