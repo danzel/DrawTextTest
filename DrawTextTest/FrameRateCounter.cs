@@ -6,6 +6,7 @@
 #region
 
 using System;
+using System.Diagnostics;
 using DrawTextTest.Properties;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -25,7 +26,7 @@ namespace DrawTextTest
 
         /// <summary>
         /// </summary>
-        private SpriteFont spriteFont;
+        public SpriteFont spriteFont;
 
         /// <summary>
         /// </summary>
@@ -71,6 +72,9 @@ namespace DrawTextTest
         /// </summary>
         private readonly HiPerfTimer updateTimer = new HiPerfTimer();
 
+        private double updateTotalDuration;
+        private double drawTotalDuration;
+        private int totalFrames;
 
         /// <summary>
         /// </summary>
@@ -103,6 +107,7 @@ namespace DrawTextTest
         {
             // Debugmodus
             this.elapsedTime += gameTime.ElapsedGameTime;
+            this.totalFrames++;
 
             if (this.elapsedTime > this.oneSec)
             {
@@ -159,6 +164,7 @@ namespace DrawTextTest
             {
                 this.UpdateFrameTimer(gameTime);
                 this.updateTimer.Stop();
+                this.updateTotalDuration += this.updateTimer.Duration;
             }
         }
 
@@ -184,8 +190,23 @@ namespace DrawTextTest
             if (this.DebugModus)
             {
                 this.drawTimer.Stop();
+                this.drawTotalDuration += this.drawTimer.Duration;
                 this.DrawTimers(gameTime);
             }
+        }
+
+        public void OutputTotalTime()
+        {
+            Console.WriteLine("Update: " + updateTotalDuration);
+            Console.WriteLine("Draw: " + drawTotalDuration);
+            Console.WriteLine("Frames: " + totalFrames);
+
+            var avgUpdate = updateTotalDuration / totalFrames;
+            var avgDraw = drawTotalDuration / totalFrames;
+            Console.WriteLine("Average Update: " + avgUpdate);
+            Console.WriteLine("Average Draw: " + avgDraw);
+
+            Debugger.Break();
         }
     }
 }

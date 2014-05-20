@@ -60,8 +60,10 @@ namespace DrawTextTest
 
             // Allows the game to exit
             if (Keyboard.GetState().IsKeyDown(Keys.Escape) || debugDownTime > 10)
+            {
+                this.fpsCounter.OutputTotalTime();
                 this.Exit();
-
+            }
             // UPS-Counter updaten
             this.fpsCounter.StartUpdateTimer();
 
@@ -85,6 +87,11 @@ namespace DrawTextTest
 
             // Clearen
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            this.spriteBatch.Begin();
+            for (var i = 20; i < 480; i += 20)
+                this.spriteBatch.DrawString(this.fpsCounter.spriteFont, "abcdefghijklmnopqrstuvwxyz1234567890 some words here on the end test amazing testing letters to the edge of the screen", new Vector2(0, i), Color.Black);
+            this.spriteBatch.End();
 
             // Draw
             this.fpsCounter.EndDrawTimer(gameTime);
