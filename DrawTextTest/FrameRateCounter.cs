@@ -206,7 +206,7 @@ namespace DrawTextTest
             Console.WriteLine("Average Update: " + avgUpdate);
             Console.WriteLine("Average Draw: " + avgDraw);
 
-            Debugger.Break();
+            //Debugger.Break();
         }
     }
 }

@@ -6,6 +6,9 @@
 
 #region
 
+using System.IO;
+using System.Text;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -48,6 +51,8 @@ namespace DrawTextTest
             this.fpsCounter.LoadContent();
         }
 
+        private int drawFrameCount, updateFrameCount;
+        private StringBuilder log = new StringBuilder();
 
         /// <summary>
         ///     Allows the game to run logic such as updating the world,
@@ -56,12 +61,17 @@ namespace DrawTextTest
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            log.AppendFormat("Update {0} {1}, ", updateFrameCount, gameTime.IsRunningSlowly);
+            log.AppendLine();
+            updateFrameCount++;
+
             debugDownTime += gameTime.ElapsedGameTime.TotalSeconds;
 
             // Allows the game to exit
             if (Keyboard.GetState().IsKeyDown(Keys.Escape) || debugDownTime > 10)
             {
                 this.fpsCounter.OutputTotalTime();
+                File.WriteAllText("out.txt", log.ToString());
                 this.Exit();
             }
             // UPS-Counter updaten
@@ -71,6 +81,11 @@ namespace DrawTextTest
 
             // UPS-Counter updaten
             this.fpsCounter.EndUpdateTimer(gameTime);
+
+            if (updateFrameCount == 105)
+                Thread.Sleep(60);
+            if (updateFrameCount == 205 || updateFrameCount == 206)
+                Thread.Sleep(120);
 
             base.Update(gameTime);
         }
@@ -82,6 +97,16 @@ namespace DrawTextTest
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            log.AppendFormat("Draw {0} {1}, ", drawFrameCount, gameTime.IsRunningSlowly);
+            log.AppendLine();
+            drawFrameCount++;
+
+
+            if (drawFrameCount == 150)
+                Thread.Sleep(60);
+            if (drawFrameCount == 260 || drawFrameCount == 261)
+                Thread.Sleep(120);
+
             // FPS-Updaten
             this.fpsCounter.StartDrawTimer();
 
@@ -89,8 +114,7 @@ namespace DrawTextTest
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             this.spriteBatch.Begin();
-            for (var i = 20; i < 480; i += 20)
-                this.spriteBatch.DrawString(this.fpsCounter.spriteFont, "abcdefghijklmnopqrstuvwxyz1234567890 some words here on the end test amazing testing letters to the edge of the screen", new Vector2(0, i), Color.Black);
+            this.spriteBatch.DrawString(this.fpsCounter.spriteFont, "abcdefghijklmnopqrstuvwxyz1234567890 some words here on the end test amazing testing letters to the edge of the screen", new Vector2(0, 40), Color.Black);
             this.spriteBatch.End();
 
             // Draw
